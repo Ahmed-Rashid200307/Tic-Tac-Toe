@@ -17,7 +17,7 @@ function playGame () {
 
   infoContainer.innerHTML = `
         <p class="winner"></p>
-      <button class="js-reset-button reset-button">Reset Game</button>
+      <button class="js-reset-button reset-button">Restart Game</button>
   `;
 
   showWinner = document.querySelector('.winner');

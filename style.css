@@ -19,15 +19,16 @@ body {
 
 .title {
   margin-top: 10vmin;
+  white-space: nowrap;
 }
 
 .main-container {
   justify-items: center;
+  width: 30vmin;
 }
 
 .game-container {
   display: flex;
-  height: 60vh;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -35,7 +36,6 @@ body {
 
 .game {
   display: flex;
-  height: 50vmin;
   width: 70vmin;
   flex-wrap: wrap;
   align-items: center;
@@ -43,9 +43,13 @@ body {
   gap: 1vmin;
 }
 
+.js-player-button-container {
+  margin-top: 140px;
+}
+
 .box {
-  height: 17vmin;
-  width: 17vmin;
+  height: 20vmin;
+  aspect-ratio: 1/1;
   font-size: 3.4rem;
   text-shadow: 0 0 50px #e60073, 0 0 30px #ff0000;
   background: rgba(255, 255, 255, 0.3);;
@@ -105,17 +109,28 @@ body {
 
 .winner {
   font-size: 1.5rem;
+  white-space: nowrap;
+  margin-top: 4vh;
   margin-bottom: 6%;
+}
+
+.info-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .reset-button {
   font-size: 15px;
+  min-width: 115px;
+  margin-top: 1vh;
   padding: 4px 6px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
   border-width:3px;
   border-radius: 6px;
-  background-color: rgba(254, 252, 255, 0.8);
   border-style: groove;
-  border-color: rgba(254, 252, 255, 0.4);
+  border-color: rgba(254, 252, 255,1);
 }
 .reset-button:active {
   background-color: rgba(254, 252, 255, 0.6);
