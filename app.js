@@ -1,9 +1,10 @@
 let playerTurn = true;
 const bothPlayerButtons = document.querySelectorAll('.js-player-button-container');
-const showWinner = document.querySelector('.winner');
+let showWinner;
+let resetButton;
 const game = document.querySelector('.game');
-const resetButton = document.querySelector('.js-reset-button');
-let boxesHTML = ''; 
+const infoContainer = document.querySelector('.info-container');
+let boxesHTML = '';
 
 function playGame () {
     
@@ -13,6 +14,14 @@ function playGame () {
   }
 
   document.querySelector('.game').innerHTML = boxesHTML;
+
+  infoContainer.innerHTML = `
+        <p class="winner"></p>
+      <button class="js-reset-button reset-button">Reset Game</button>
+  `;
+
+  showWinner = document.querySelector('.winner');
+  resetButton = document.querySelector('.js-reset-button');
 
   let combinationArray = [
     [0, 1, 2],
