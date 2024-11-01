@@ -1,0 +1,119 @@
+* {
+  font-family: Quicksand;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url("v882-sasi-39-f.jpg");
+  background-size: cover;
+  justify-items: center;
+  align-items: center;
+  background-attachment: fixed;
+}
+
+.main-container {
+  justify-items: center;
+}
+
+.game-container {
+  display: flex;
+  height: 75vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.game {
+  display: flex;
+  height: 50vmin;
+  width: 70vmin;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1vmin;
+}
+
+.box {
+  height: 17vmin;
+  width: 17vmin;
+  font-size: 3.4rem;
+  text-shadow: 0 0 50px #e60073, 0 0 30px #ff0000;
+  background: rgba(255, 255, 255, 0.3);;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  border-radius: 6px;
+  border-style: inset;
+  border-color: rgba(254, 252, 255, 0.5);
+  position: relative;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.X {
+  color: rgba(0, 26, 255, 0.4);
+  text-shadow: 0 0 5px rgba(0, 15, 230, 0.4), 0 0 20px rgba(0, 15, 230, 0.5), 0 0 15px rgba(0, 15, 230, 0.4);
+}
+
+.O {
+  color: rgba(255, 0, 0, 0.4);
+  text-shadow: 0 0 1px rgba(230, 0, 115, 0.4), 0 0 3px rgba(230, 0, 115, 0.5), 0 0 8px rgba(230, 0, 115, 0.4);
+}
+
+.box:active {
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.choose-color {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.player1,
+.player2 {
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 18px;
+  margin: 25px 10px ;
+  color: white;
+  border-radius: 4px;
+}
+
+.player1 {
+  background-color: rgba(0, 26, 255, 0.6);
+  border-color: rgba(0, 26, 255, 0.3);
+  box-shadow: 0 0 5px rgba(0, 15, 230, 0.4), 0 0 20px rgba(0, 15, 230, 0.5);
+}
+
+.player2 {
+  background-color: rgba(255, 26, 0, 0.6);
+  border-color: rgba(255, 26, 0, 0.3);
+  box-shadow: 0 0 5px rgba(230, 0, 115, 0.4), 0 0 20px rgba(230, 0, 115, 0.5);
+}
+
+.winner {
+  font-size: 1.5rem;
+  margin-bottom: 6%;
+}
+
+.reset-button {
+  font-size: 15px;
+  padding: 4px 6px;
+  border-width:3px;
+  border-radius: 6px;
+  background-color: rgba(254, 252, 255, 0.8);
+  border-style: groove;
+  border-color: rgba(254, 252, 255, 0.4);
+}
+.reset-button:active {
+  background-color: rgba(254, 252, 255, 0.6);
+  border-color: rgba(254, 252, 255, 0.6);
+}
+
