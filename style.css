@@ -9,42 +9,37 @@ html {
 }
 
 body {
+  display: flex;
+  height: 100%;
   background-image: url("v882-sasi-39-f.jpg");
+  backdrop-filter: blur(8px);
   background-size: cover;
-  /* background-repeat: no-repeat */
-  justify-items: center;
   align-items: center;
-  background-attachment: fixed;
+  justify-content: center;
+  transition: backdrop-filter 1s;
 }
 
 .title {
-  margin-top: 10vmin;
   white-space: nowrap;
 }
 
 .main-container {
   justify-items: center;
-  width: 30vmin;
+  width: 20vmin;
 }
 
 .game-container {
+  height: 70vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .game {
   display: flex;
   width: 70vmin;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   gap: 1vmin;
-}
-
-.js-player-button-container {
-  margin-top: 140px;
 }
 
 .box {
@@ -58,7 +53,6 @@ body {
   border-radius: 6px;
   border-style: inset;
   border-color: rgba(254, 252, 255, 0.5);
-  position: relative;
 }
 
 .disabled {
@@ -109,8 +103,6 @@ body {
 
 .winner {
   font-size: 1.5rem;
-  white-space: nowrap;
-  margin-top: 4vh;
   margin-bottom: 6%;
 }
 
@@ -122,6 +114,7 @@ body {
 
 .reset-button {
   font-size: 15px;
+  font-weight: 600;
   min-width: 115px;
   margin-top: 1vh;
   padding: 4px 6px;
@@ -130,8 +123,9 @@ body {
   border-width:3px;
   border-radius: 6px;
   border-style: groove;
-  border-color: rgba(254, 252, 255,1);
+  border-color: rgb(209, 209, 209);
 }
+
 .reset-button:active {
   background-color: rgba(254, 252, 255, 0.6);
   border-color: rgba(254, 252, 255, 0.6);

@@ -7,7 +7,6 @@ const infoContainer = document.querySelector('.info-container');
 let boxesHTML = '';
 
 function playGame () {
-    
 
   for (let i=1; i<=9; i++) {
     boxesHTML += '<button class="box"></button>';
@@ -35,9 +34,11 @@ function playGame () {
   ];
 
   let boxes = document.querySelectorAll('.box');
+  let occupiedBoxes = 0;
 
   boxes.forEach((box) => {
     box.addEventListener('click', () => {
+      
 
       playerTurn? box.innerHTML = 'X' : box.innerHTML = 'O';
 
@@ -52,11 +53,13 @@ function playGame () {
 
       playerTurn? playerTurn=false : playerTurn=true;
 
-      checkWinner(combinationArray);
+      occupiedBoxes ++;
+      checkWinner(occupiedBoxes);
     })
     })
 
-  function checkWinner (combinationArray) {
+  function checkWinner (occupiedBoxes) {
+
     combinationArray.forEach((combination) => {
       let checkBoxes_x = 0;
       let checkBoxes_o = 0;
@@ -64,7 +67,7 @@ function playGame () {
 
         const char = boxes[num].innerHTML;
         if(char === 'X') {
-        checkBoxes_x ++; 
+          checkBoxes_x ++; 
         }
         else if (char === 'O') {
           checkBoxes_o ++;
@@ -74,18 +77,22 @@ function playGame () {
       
       if(checkBoxes_x === 3) {
         declareWinner('X');
+        showWinner.classList.add('X');
       }
       else if(checkBoxes_o === 3) {
         declareWinner('O');
-      } 
+        showWinner.classList.add('O');
+      }
+      else if(occupiedBoxes === 9) {
+        declareWinner("Draw");
+      }
 
     })
   }
 
   function declareWinner (player) {
-    showWinner.classList.add(player)
-    showWinner.innerHTML = `Player ${player} Wins`
-    console.log(`Player ${player} wins`);
+    showWinner.innerHTML = `${(player === 'Draw')? player : `${player} Wins`}`
+
     boxes.forEach(box => {
       box.disabled = true
       box.classList.add('disabled');
@@ -111,7 +118,7 @@ function choosePlayer() {
 
   playerButton.addEventListener('click', () => {
     playGame();
-
+    document.body.style.backdropFilter = "blur(3px)";
     bothPlayerButtons.forEach((button) => {
       button.remove();
     })
