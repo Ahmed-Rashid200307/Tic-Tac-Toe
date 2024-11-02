@@ -32,6 +32,7 @@ body {
   height: 70vh;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 .game {
@@ -123,7 +124,7 @@ body {
   border-width:3px;
   border-radius: 6px;
   border-style: groove;
-  border-color: rgb(209, 209, 209);
+  border-color: rgba(254, 252, 255,1);
 }
 
 .reset-button:active {
