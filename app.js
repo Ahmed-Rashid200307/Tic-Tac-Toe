@@ -5,6 +5,7 @@ let resetButton;
 const game = document.querySelector('.game');
 const infoContainer = document.querySelector('.info-container');
 let boxesHTML = '';
+let playerComputer = false;
 
 function playGame () {
 
@@ -58,6 +59,15 @@ function playGame () {
     })
     })
 
+  function computerMove () {
+    boxes.forEach((box) => {
+      const occupied = box.innerHTML;
+      if(!occupied) {
+        
+      }
+    })
+  }
+
   function checkWinner (occupiedBoxes) {
 
     combinationArray.forEach((combination) => {
@@ -106,17 +116,12 @@ function playGame () {
 }
 
 function choosePlayer() {
-  game.innerHTML = `
-  <div class="js-player-button-container">
-  <p class="choose-color">CHOOSE YOUR COLOR</p>
-  <button class="js-player-button player1">Blue X</button>
-  <button class="js-player-button player2">Red O</button>
-  </div>
-  `;
 
   document.querySelectorAll('.js-player-button').forEach((playerButton) => {
 
   playerButton.addEventListener('click', () => {
+    const selectedOption = playerButton.dataset.option;
+    if(selectedOption) {playerComputer = true};
     playGame();
     document.body.style.backdropFilter = "blur(3px)";
     bothPlayerButtons.forEach((button) => {

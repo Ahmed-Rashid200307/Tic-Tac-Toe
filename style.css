@@ -74,12 +74,13 @@ body {
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 
-.choose-color {
+.choose-option {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 30px;
 }
 
+.computer,
 .player1,
 .player2 {
   font-weight: 700;
@@ -88,6 +89,10 @@ body {
   margin: 25px 6px ;
   color: white;
   border-radius: 4px;
+}
+
+.computer {
+  background-color: dimgray;
 }
 
 .player1 {
