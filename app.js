@@ -1,13 +1,24 @@
-let playerTurn = true;
+let playerTurn = '';
 const bothPlayerButtons = document.querySelectorAll('.js-player-button-container');
 let showWinner;
 let resetButton;
 const game = document.querySelector('.game');
 const infoContainer = document.querySelector('.info-container');
-let boxesHTML = '';
 let playerComputer = false;
+let combinationArray = [
+  [0, 1, 2],
+  [0, 3, 6],
+  [0, 4, 8],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+  [3, 4, 5],
+  [6, 7, 8]
+];
 
 function playGame () {
+  
+  let boxesHTML = '';
 
   for (let i=1; i<=9; i++) {
     boxesHTML += '<button class="box"></button>';
@@ -22,53 +33,48 @@ function playGame () {
 
   showWinner = document.querySelector('.winner');
   resetButton = document.querySelector('.js-reset-button');
-
-  let combinationArray = [
-    [0, 1, 2],
-    [0, 3, 6],
-    [0, 4, 8],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6],
-    [3, 4, 5],
-    [6, 7, 8]
-  ];
-
+  
+  
   let boxes = document.querySelectorAll('.box');
   let occupiedBoxes = 0;
-
+  
   boxes.forEach((box) => {
     box.addEventListener('click', () => {
       
+      box.innerHTML = playerTurn;
 
-      playerTurn? box.innerHTML = 'X' : box.innerHTML = 'O';
-
-      if(playerTurn) {
-        box.innerHTML = 'X';
-        box.classList.add("X", "disabled");
-      }
-      else{
-        box.innerHTML = 'O';
-        box.classList.add("O", "disabled");
-      }
-
-      playerTurn? playerTurn=false : playerTurn=true;
+      box.classList.add(playerTurn, "disabled");
+      
+      playerTurn = playerTurn === 'X'? 'O' : 'X';
 
       occupiedBoxes ++;
+      if (playerComputer && occupiedBoxes < 9){
+        computerMove();
+        occupiedBoxes ++;
+      }
+
       checkWinner(occupiedBoxes);
     })
     })
 
   function computerMove () {
-    boxes.forEach((box) => {
-      const occupied = box.innerHTML;
-      if(!occupied) {
-        
+    flag = true;
+
+    while(flag) {
+      const randomBoxNum = Math.round(Math.random() * 8);
+      let randomBox = boxes[randomBoxNum];
+      
+      if(!randomBox.innerHTML) {
+        randomBox.innerHTML = playerTurn;
+        randomBox.classList.add(playerTurn, "disabled");
+        playerTurn = playerTurn === 'X'? 'O' : 'X';
+        flag = false;
       }
-    })
+    }
   }
 
   function checkWinner (occupiedBoxes) {
+    let winnerFound = false;
 
     combinationArray.forEach((combination) => {
       let checkBoxes_x = 0;
@@ -87,13 +93,15 @@ function playGame () {
       
       if(checkBoxes_x === 3) {
         declareWinner('X');
+        winnerFound = true;
         showWinner.classList.add('X');
       }
       else if(checkBoxes_o === 3) {
         declareWinner('O');
+        winnerFound = true;
         showWinner.classList.add('O');
       }
-      else if(occupiedBoxes === 9) {
+      else if(occupiedBoxes === 9 && !winnerFound) {
         declareWinner("Draw");
       }
 
@@ -101,7 +109,8 @@ function playGame () {
   }
 
   function declareWinner (player) {
-    showWinner.innerHTML = `${(player === 'Draw')? player : `${player} Wins`}`
+    playerComputer = false;
+    showWinner.innerHTML = `${(player === 'Draw')? player : `${player} Wins`}`;
 
     boxes.forEach(box => {
       box.disabled = true
@@ -121,7 +130,10 @@ function choosePlayer() {
 
   playerButton.addEventListener('click', () => {
     const selectedOption = playerButton.dataset.option;
-    if(selectedOption) {playerComputer = true};
+    const selectedButton = playerButton.dataset.button;
+    playerTurn = selectedOption;
+    
+    if(selectedButton === 'computer') {playerComputer = true};
     playGame();
     document.body.style.backdropFilter = "blur(3px)";
     bothPlayerButtons.forEach((button) => {
