@@ -55,6 +55,7 @@ body {
   border-style: inset;
   border-color: rgba(254, 252, 255, 0.5);
   transition: all 300ms;
+  cursor: pointer;
 }
 
 .disabled {
