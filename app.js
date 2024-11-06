@@ -1,5 +1,8 @@
 let playerTurn = '';
+let occupiedBoxes = 0;
 const bothPlayerButtons = document.querySelectorAll('.js-player-button-container');
+let selectedOption;
+let selectedButton;
 let showWinner;
 let resetButton;
 const game = document.querySelector('.game');
@@ -36,7 +39,6 @@ function playGame () {
   
   
   let boxes = document.querySelectorAll('.box');
-  let occupiedBoxes = 0;
   
   boxes.forEach((box) => {
     box.addEventListener('click', () => {
@@ -47,13 +49,15 @@ function playGame () {
       
       playerTurn = playerTurn === 'X'? 'O' : 'X';
 
+      checkWinner();
+
       occupiedBoxes ++;
       if (playerComputer && occupiedBoxes < 9){
         computerMove();
         occupiedBoxes ++;
       }
 
-      checkWinner(occupiedBoxes);
+      checkWinner();
     })
     })
 
@@ -71,9 +75,11 @@ function playGame () {
         flag = false;
       }
     }
+
+    checkWinner();
   }
 
-  function checkWinner (occupiedBoxes) {
+  function checkWinner () {
     let winnerFound = false;
 
     combinationArray.forEach((combination) => {
@@ -97,7 +103,7 @@ function playGame () {
         showWinner.classList.add('X');
       }
       else if(checkBoxes_o === 3) {
-        declareWinner('O');
+        declareWinner(selectedButton === "Computer"? selectedButton : 'O');
         winnerFound = true;
         showWinner.classList.add('O');
       }
@@ -129,11 +135,11 @@ function choosePlayer() {
   document.querySelectorAll('.js-player-button').forEach((playerButton) => {
 
   playerButton.addEventListener('click', () => {
-    const selectedOption = playerButton.dataset.option;
-    const selectedButton = playerButton.dataset.button;
+    selectedOption = playerButton.dataset.option;
+    selectedButton = playerButton.dataset.button;
     playerTurn = selectedOption;
     
-    if(selectedButton === 'computer') {playerComputer = true};
+    if(selectedButton === 'Computer') {playerComputer = true};
     playGame();
     document.body.style.backdropFilter = "blur(3px)";
     bothPlayerButtons.forEach((button) => {
